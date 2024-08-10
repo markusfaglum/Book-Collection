@@ -1,0 +1,35 @@
+
+
+<title>Login</title>
+
+<section class="login-bg">
+
+  <div class="container">
+
+    <div class="d-block text-center mt-3">
+      <h1 class="brand-title">Mi Collection</h1>
+    </div>
+
+    <form (ngSubmit)="onFormSubmit()" [formGroup]="loginForm" class="login-form mx-auto">
+      <h4 class="h4-login text-center">Login</h4>
+
+
+      <div *ngIf="errorMessage" class="text-danger text-center mb-3">
+        {{ errorMessage }}
+      </div>
+
+      <div class="mb-3 mt-5">
+        <label for="username" class="form-label">User Name</label>
+        <input type="text" formControlName="username" class="form-control" id="exampleInputEmail" />
+
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" formControlName="password" class="form-control" id="exampleInputPassword" />
+        <a href="/register" class="form-text mt-3">Register</a>
+      </div>
+
+      <button type="submit" class="btn-login btn btn-primary mt-4">Login</button>
+    </form>
+  </div>
+</section>

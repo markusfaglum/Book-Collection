@@ -1,0 +1,160 @@
+import { HttpClient } from '@angular/common/http';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
+import { AuthService } from '../Service/AuthService';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Book } from '../../Entities/book.entity';
+import { Observable, tap } from 'rxjs';
+import { AsyncPipe, CommonModule } from '@angular/common';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+
+@Component({
+  selector: 'app-home',
+  standalone: true,
+  imports: [AsyncPipe, FormsModule, ReactiveFormsModule, CommonModule, MatDatepickerModule, MatNativeDateModule, MatInputModule],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css',
+  encapsulation: ViewEncapsulation.None
+})
+export class HomeComponent {
+
+  http = inject(HttpClient);
+
+  authService = inject(AuthService);
+
+  errorMessage: string = '';
+
+  //Books
+
+  booksForm: FormGroup;
+  selectedBook: any;
+  constructor(private fb: FormBuilder) {
+    this.booksForm = this.fb.group({
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+      author: ['', Validators.required],
+      publishingDate: [null, Validators.required]
+    });
+  }
+
+  books$ = this.getBooks();
+
+
+
+  onFormSubmit() {
+    if (this.booksForm.invalid) {
+      this.errorMessage = 'Fields must not be empty';
+      alert("Fields must not be empty");
+      this.books$ = this.getBooks();
+      this.booksForm.reset();
+      return;
+    }
+    const addBookRequest = {
+      title: this.booksForm.value.title,
+      description: this.booksForm.value.description,
+      author: this.booksForm.value.author,
+      publishingDate: this.booksForm.value.publishingDate
+    }
+    this.http.post("https://localhost:7204/api/Book", addBookRequest)
+      .subscribe({
+        next: (value) => {
+          console.log(value);
+          this.books$ = this.getBooks();
+          this.booksForm.reset();
+        }
+      })
+  }
+
+  selectedBookForDeletion: Book | null = null;
+
+  openDeleteModal(item: Book) {
+    this.selectedBookForDeletion = item;
+  }
+
+  onDelete() {
+    if (this.selectedBookForDeletion) {
+      const id = this.selectedBookForDeletion.id;
+      this.http.delete(`https://localhost:7204/api/Book/${id}`)
+        .subscribe({
+          next: (value) => {
+            alert("Item deleted");
+            this.books$ = this.getBooks();
+            this.selectedBookForDeletion = null;
+          },
+          error: (err) => {
+            console.error("Delete error:", err);
+          }
+        });
+    }
+  }
+
+  private getBooks(): Observable<Book[]> {
+    return this.http.get<Book[]>("https://localhost:7204/api/Book").pipe(
+      tap(books => console.log("Books received:", books))
+    );
+  }
+
+  onEditFormSubmit() {
+
+    if (this.booksForm.invalid) {
+      this.errorMessage = 'Fields must not be empty';
+      alert("Fields must not be empty");
+      this.books$ = this.getBooks();
+      this.booksForm.reset();
+      return;
+    }
+
+    if (this.selectedBook) {
+      const editBookRequest = {
+        id: this.selectedBook.id,
+        title: this.booksForm.value.title,
+        description: this.booksForm.value.description,
+        author: this.booksForm.value.author,
+        publishingDate: this.booksForm.value.publishingDate
+      };
+
+      console.log("Submitting update for book:", editBookRequest);
+
+      this.http.put(`https://localhost:7204/api/Book`, editBookRequest)
+        .subscribe({
+          next: (value) => {
+            console.log("Update successful:", value);
+            this.books$ = this.getBooks();
+            this.booksForm.reset();
+            this.selectedBook = null;
+
+          },
+          error: (err) => {
+            console.error("Update error:", err);
+          }
+        });
+    } else {
+      console.error("No book selected for editing.");
+    }
+
+  }
+
+  onDateChange(event: any) {
+    console.log('Date changed:', event.value);
+
+  }
+
+
+  openEditModal(item: Book) {
+    this.selectedBook = item;
+
+
+    this.booksForm.patchValue({
+      title: item.title,
+      description: item.description,
+      author: item.author,
+      publishingDate: item.publishingDate ? new Date(item.publishingDate) : null,
+    });
+  }
+
+  logout() {
+    this.authService.logout();
+  }
+
+}
