@@ -4,13 +4,13 @@
 .register-bg {
   background-color: var(--secondary-color);
   font-family: "Poppins", sans-serif;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2rem;
   max-width: 100vw; 
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .brand-title {
