@@ -2,30 +2,12 @@
 
 .card {
   height: 100%;
-}
-
-.card-body {
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(55, 70, 90, 1);
+  --bs-card-border-width: 0;
 }
 
 .card-text {
   flex-grow: 1;
 }
-
-.mt-auto {
-  margin-top: auto;
-}
-
-.btn-edit-del {
-  background-color: rgba(55, 70, 90, 1);
-}
-
-  .btn-edit-del:hover {
-    color: orange;
-  }
-
 
 .bg-section {
   background-image: url('/amz-bg.jpg');
@@ -48,22 +30,6 @@
     background-color: rgba(128, 128, 128, 0.5);
   }
 
-.modal-content {
-  background-color: rgba(55, 70, 90, 1);
-}
-
-.add-form {
-  color: white;
-}
-
-.form-control {
-  background-color: rgba(34, 47, 62, 1);
-  color: white;
-}
-
-.navbar-brand {
-  font-weight: 800;
-}
 
 .navbar-toggler:focus {
   box-shadow: none;
@@ -73,20 +39,22 @@
 
 .navbar-toggler {
   transition: outline 0.1s ease-in-out;
+  color: var(--text-color);
+  border-color: var(--text-color);
+  border-radius: 10px;
+  border-width: medium;
 }
 
 
   .navbar-toggler:hover {
-    outline: 2px solid #fff;
-    outline-offset: 1px;
+    box-shadow: 0 0 0 3px white;
+    transition: 0.1s ease-in-out;
   }
 
-.navbar {
-  background-color: rgba(34, 47, 62, 1);
-}
-
-.viewing-bar {
-  background-color: rgba(34, 47, 62, 1);
+.form-check-input:focus {
+  border-color: var(--secondary-color) !important;
+  outline: none;
+  box-shadow: none;
 }
 
 .full-width-img {
@@ -97,31 +65,125 @@
   clip-path: polygon(100% 100%, 100% 0%, 6% 0%, 0% 100%);
 }
 
+.cdk-overlay-container {
+  z-index: 1200 !important;
+}
+
+.no-booksdiv {
+  z-index: 1000 !important;
+}
+
+.nav-link {
+  color: var(--text-color);
+}
+
+.navbar-brand {
+  font-weight: 800;
+  color: var(--text-color);
+}
+
+.navbar-brand:hover {
+    font-weight: 800;
+    color: var(--text-color);
+}
+
+.navbar {
+  background-color: var(--secondary-color);
+}
+
+
 .text-and-img {
   overflow: hidden;
-  background-color: rgba(55, 70, 90, 1);
+  background-color: var(--primary-color);
+}
+
+.save-txt {
+  color: var(--text-color);
 }
 
 .yellow-btn {
   background-color: orange;
-  color: white;
+  color: var(--text-color);
   font-weight: 600;
   transition: background-color 0.1s ease-in-out;
 }
 
   .yellow-btn:hover {
     background-color: darkorange;
+    color: var(--text-color);
   }
 
-.cdk-overlay-container {
-  z-index: 1200 !important;
+  .yellow-btn:active {
+    background-color: darkorange !important;
+    color: var(--text-color) !important;
+    border-color: darkorange !important;
+    opacity: 0.25;
+  }
+
+.viewing-bar {
+  background-color: var(--secondary-color);
 }
+
+.modal-content {
+  background-color: var(--primary-color);
+  text-align: center;
+}
+
+.add-form {
+  color: var(--text-color);
+}
+
+.form-control {
+  background-color: white;
+  color: black;
+}
+
+  .form-control:focus {
+    background-color: white;
+    color: black;
+  }
+
+.mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper {
+  border-radius: 10px;
+}
+
+.modal-footer-btn {
+  color: var(--text-color);
+}
+
+  .modal-footer-btn:active {
+    color: var(--text-color) !important;
+    opacity: 0.25;
+  }
+
+  .modal-footer-btn:hover {
+    color: var(--text-color) !important;
+  }
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+.btn-edit-del {
+  background-color: var(--primary-color);
+}
+
+  .btn-edit-del:hover {
+    color: orange;
+  }
 
 .no-books {
   font-weight: 600;
-  color: white;
+  color: var(--text-color);
 }
 
-.no-booksdiv {
-  z-index: 1000 !important;
+.theme-btn {
+  color: var(--text-color);
+}
+
+.delete-text {
+  color: var(--text-color);
 }

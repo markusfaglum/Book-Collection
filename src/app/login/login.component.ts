@@ -4,6 +4,7 @@ import { AuthService } from '../Service/AuthService';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-login',
@@ -19,8 +20,37 @@ export class LoginComponent {
 
   errorMessage: string = '';
 
+  isDarkMode = true;
+
+  appComp = inject(AppComponent);
+
+  // Dark/light mode
+  ngOnInit(): void {
+    this.initializeSwitchState(); 
+  }
+
+  initializeSwitchState(): void {
+    
+    this.isDarkMode = this.appComp.getIsDark('isDarkMode');
+    if (this.isDarkMode === true) {
+      this.appComp.darkTheme();
+      console.log("It's dark");
+    } else {
+      this.appComp.lightTheme();
+      console.log("It's light");
+    }
+    this.appComp.setIsDark(this.isDarkMode);
+
+  }
+
+  toggleTheme() {
+    this.appComp.toggleTheme();
+    this.isDarkMode = !this.isDarkMode;
+  }
+
   constructor(private authService: AuthService, private router: Router) { }
 
+  // Form + login
   loginForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl('')

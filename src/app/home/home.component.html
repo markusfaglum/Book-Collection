@@ -2,8 +2,8 @@
 
 
 
-<body data-bs-theme="dark">
-
+<body>
+  <!-- navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
       <a href="/home" class="navbar-brand"> My Collection</a>
@@ -23,22 +23,28 @@
           <li class="nav-item">
             <a href="/" (click)="logout()" class="nav-link">Logout</a>
           </li>
-          <li class="nav-item">
-            <a href="/" (click)="logout()" class="nav-link">Dark/Light Mode</a>
-          </li>
         </ul>
+
+        <div class="theme-btn form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="themeSwitch" (change)="toggleTheme()" [checked]="isDarkMode">
+          <label class="form-check-label" for="themeSwitch">
+            <span *ngIf="!isDarkMode"><i class="fa-regular fa-sun"></i> Light Mode</span>
+            <span *ngIf="isDarkMode"><i class="fa-regular fa-moon"></i> Dark Mode</span>
+          </label>
+        </div>
 
       </div>
     </div>
   </nav>
 
+  <!--Filler text and img + btn -->
   <section class="text-and-img text-light p-5 p-lg-0 text-center text-sm-start">
     <div class="container">
       <div class="row">
         <div class="col-lg-6 justify-content-sapce-between">
           <div class="me-4 pt-4">
-            <h1>Save <span class="text-warning">Books and Quotes</span></h1>
-            <p class="lead my-4">
+            <h1 class="save-txt">Save <span class="text-warning">Books and Quotes</span></h1>
+            <p class="save-txt lead my-4">
               The best place to Store and Share your favorite books and quotes.
               Romeo- Nay, that's not so.
               Mercutio- I mean, sir, in delay
@@ -46,8 +52,8 @@
               Take our good meaning, for our judgment sits
               Five times in that ere once in our five wits.
             </p>
-            <button class="yellow-btn btn btn-lg ms-2 mt-2" data-bs-toggle="modal" data-bs-target="#add-modal">Add Book</button>
-            <a href="/quotes" class="yellow-btn btn btn-lg ms-2 mt-2">View Quotes</a>
+            <button class="yellow-btn btn btn-lg me-2 mt-2" data-bs-toggle="modal" data-bs-target="#add-modal">Add Book</button>
+            <a href="/quotes" class="yellow-btn btn btn-lg me-2 mt-2">View Quotes</a>
           </div>
         </div>
 
@@ -60,6 +66,7 @@
 
     </div>
 
+    <!-- Modal for add -->
 
     <div class="modal fade" tabindex="-1" id="add-modal">
       <div class="modal-dialog">
@@ -87,10 +94,10 @@
               </div>
 
               <div class="mb-3 add-form">
-                <label for="publishingDate" class="form-label">Publishing Date</label>
+                <label for="publishingDate" class="form-label me-2">Publishing Date</label>
                 <mat-form-field appearance="fill">
                   <mat-label>Publishing Date</mat-label>
-                  <input matInput [matDatepicker]="picker" formControlName="publishingDate" (dateChange)="onDateChange($event)">
+                  <input matInput [matDatepicker]="picker" formControlName="publishingDate"/>  
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
@@ -99,8 +106,8 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" (click)="onFormSubmit()" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+            <button type="button" class="modal-footer-btn btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" (click)="onFormSubmit()" class="modal-footer-btn btn btn-primary" data-bs-dismiss="modal">Save</button>
           </div>
         </div>
       </div>
@@ -108,13 +115,17 @@
 
   </section>
 
+  <!-- Currently viewing -->
+
   <section class="viewing-bar text-light p-3">
     <div class="container">
       <div class="d-md-flex justify-content-center">
-        <h3 class="mb-3 mb-md-0 text-center">Viewing Books</h3>
+        <h3 class="save-txt mb-3 mb-md-0 text-center">Viewing Books</h3>
       </div>
     </div>
   </section>
+
+  <!-- Display list of books -->
 
   <section class="bg-section">
     <div class="container">
@@ -123,7 +134,7 @@
         @if (books$ | async;as books) {
         @if (books.length > 0){
         @for (item of books; track $index){
-        <div class="col-md-4 mb-4 d-flex align-items-stretch">
+        <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch">
           <div class="card bg-dark text-light flex-fill">
             <div class="card-body text-center d-flex flex-column">
               <h3 class="card-title mb-3"> {{item.title}}</h3>
@@ -142,6 +153,8 @@
               </div>
             </div>
           </div>
+
+          <!-- Edit and delete modal for book -->
 
           <div class="modal fade" tabindex="-1" id="edit-modal">
             <div class="modal-dialog">
@@ -169,10 +182,10 @@
                     </div>
 
                     <div class="mb-3 add-form">
-                      <label for="publishingDate" class="form-label">Publishing Date</label>
+                      <label for="publishingDate" class="form-label me-2">Publishing Date</label>
                       <mat-form-field appearance="fill">
                         <mat-label>Publishing Date</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="publishingDate" (dateChange)="onDateChange($event)">
+                        <input matInput [matDatepicker]="picker" formControlName="publishingDate"> 
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                       </mat-form-field>
@@ -181,8 +194,8 @@
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" (click)="onEditFormSubmit()" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+                  <button type="button" class="modal-footer-btn btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" (click)="onEditFormSubmit()" class="modal-footer-btn btn btn-primary" data-bs-dismiss="modal">Save</button>
                 </div>
               </div>
             </div>
@@ -192,15 +205,15 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">Are you sure you want to delete:</h5>
+                  <h5 class="delete-text modal-title">Are you sure you want to delete:</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <p *ngIf="selectedBookForDeletion">{{selectedBookForDeletion.title}}</p>
+                  <p class="delete-text" *ngIf="selectedBookForDeletion">{{selectedBookForDeletion.title}}</p>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" (click)="onDelete()" class="btn btn-primary" data-bs-dismiss="modal">Delete</button>
+                  <button type="button" class=" modal-footer-btn btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" (click)="onDelete()" class="modal-footer-btn btn btn-primary" data-bs-dismiss="modal">Delete</button>
                 </div>
               </div>
             </div>

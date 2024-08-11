@@ -8,6 +8,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-quotes',
@@ -25,6 +26,35 @@ export class QuotesComponent {
 
   errorMessage: string = '';
 
+  isDarkMode = true;
+
+  appComp = inject(AppComponent);
+
+  // Dark/light mode
+  ngOnInit(): void {
+    this.initializeSwitchState(); 
+  }
+
+  initializeSwitchState(): void {
+    
+    this.isDarkMode = this.appComp.getIsDark('isDarkMode');
+    if (this.isDarkMode === true) {
+      this.appComp.darkTheme();
+      console.log("It's dark");
+    } else {
+      this.appComp.lightTheme();
+      console.log("It's light");
+    }
+    this.appComp.setIsDark(this.isDarkMode);
+
+  }
+
+  toggleTheme() {
+    this.appComp.toggleTheme();
+    this.isDarkMode = !this.isDarkMode;
+  }
+
+  // Quotes form
   quotesForm: FormGroup;
   selectedQuote: any;
   constructor(private fb: FormBuilder) {
@@ -38,7 +68,7 @@ export class QuotesComponent {
   quotes$ = this.getQuotes();
 
 
-
+  // Add quote
   onFormSubmit() {
     if (this.quotesForm.invalid) {
       this.errorMessage = 'Fields must not be empty';
@@ -62,6 +92,7 @@ export class QuotesComponent {
       })
   }
 
+  // Delete quote
   selectedQuoteForDeletion: Quote | null = null;
 
   openDeleteModal(item: Quote) {
@@ -85,12 +116,14 @@ export class QuotesComponent {
     }
   }
 
+  // Get all quotes
   private getQuotes(): Observable<Quote[]> {
     return this.http.get<Quote[]>("https://localhost:7204/api/Quote").pipe(
       tap(quotes => console.log("Quotes received:", quotes))
     );
   }
 
+  // Edit quote
   onEditFormSubmit() {
 
     if (this.quotesForm.invalid) {
@@ -130,12 +163,7 @@ export class QuotesComponent {
 
   }
 
-  onDateChange(event: any) {
-    console.log('Date changed:', event.value);
-
-  }
-
-
+  // Auto fill edit form
   openEditModal(item: Quote) {
     this.selectedQuote = item;
 
@@ -147,6 +175,7 @@ export class QuotesComponent {
     });
   }
 
+  // Logout
   logout() {
     this.authService.logout();
   }

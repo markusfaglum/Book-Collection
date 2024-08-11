@@ -2,34 +2,50 @@
 
 <title>Login</title>
 
-<section class="login-bg">
+<section class="row login-bg">
 
-  <div class="container">
+  <div class="col-12">
+    <div class="container">
+      <div class="theme-btn form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="themeSwitch" (change)="toggleTheme()" [checked]="isDarkMode">
+        <label class="form-check-label" for="themeSwitch">
+          <span *ngIf="!isDarkMode"><i class="fa-regular fa-sun"></i> Light Mode</span>
+          <span *ngIf="isDarkMode"><i class="fa-regular fa-moon"></i> Dark Mode</span>
+        </label>
+      </div>
+    </div>
+  </div>
 
-    <div class="d-block text-center mt-3">
-      <h1 class="brand-title">Mi Collection</h1>
+  <div class="col-12">
+
+    <div class="container">
+
+      <div class="d-block text-center mt-3">
+        <h1 class="brand-title">My Collection</h1>
+      </div>
+
+      <form (ngSubmit)="onFormSubmit()" [formGroup]="loginForm" class="login-form mx-auto">
+        <h4 class="h4-login text-center">Login</h4>
+
+
+        <div *ngIf="errorMessage" class="text-danger text-center mb-3">
+          {{ errorMessage }}
+        </div>
+
+        <div class="mb-3 mt-5">
+          <label for="username" class="form-label">User Name</label>
+          <input type="text" formControlName="username" class="form-control" id="exampleInputEmail" />
+
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" formControlName="password" class="form-control" id="exampleInputPassword" />
+          <a href="/register" class="form-text mt-3">Register</a>
+        </div>
+
+        <button type="submit" class="btn-login btn btn-primary mt-4">Login</button>
+      </form>
     </div>
 
-    <form (ngSubmit)="onFormSubmit()" [formGroup]="loginForm" class="login-form mx-auto">
-      <h4 class="h4-login text-center">Login</h4>
-
-
-      <div *ngIf="errorMessage" class="text-danger text-center mb-3">
-        {{ errorMessage }}
-      </div>
-
-      <div class="mb-3 mt-5">
-        <label for="username" class="form-label">User Name</label>
-        <input type="text" formControlName="username" class="form-control" id="exampleInputEmail" />
-
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" formControlName="password" class="form-control" id="exampleInputPassword" />
-        <a href="/register" class="form-text mt-3">Register</a>
-      </div>
-
-      <button type="submit" class="btn-login btn btn-primary mt-4">Login</button>
-    </form>
-  </div>
+    </div>
 </section>
