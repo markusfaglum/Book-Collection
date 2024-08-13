@@ -13,6 +13,10 @@
   overflow: hidden;
 }
 
+.row {
+  --bs-gutter-x: 0;
+}
+
 .brand-title {
   font-weight: 900;
   color: var(--text-color);
