@@ -77,10 +77,19 @@ export class QuotesComponent {
       this.quotesForm.reset();
       return;
     }
+
+
+    let dateOfQuote = this.quotesForm.value.dateOfQuote;
+    if (dateOfQuote) {
+      const date = new Date(dateOfQuote);
+      date.setHours(0, 0, 0, 0);
+      dateOfQuote = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())).toISOString();
+    }
+
     const addQuoteRequest = {
       quotation: this.quotesForm.value.quotation,
       attributed: this.quotesForm.value.attributed,
-      dateOfQuote: this.quotesForm.value.dateOfQuote ? this.quotesForm.value.dateOfQuote.toISOString() : null
+      dateOfQuote: dateOfQuote
     };
     this.http.post("https://book-api-reset20240814170746.azurewebsites.net/api/Quote", addQuoteRequest)
       .subscribe({
@@ -134,12 +143,19 @@ export class QuotesComponent {
       return;
     }
 
+    let dateOfQuote = this.quotesForm.value.dateOfQuote;
+    if (dateOfQuote) {
+      const date = new Date(dateOfQuote);
+      date.setHours(0, 0, 0, 0);
+      dateOfQuote = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())).toISOString();
+    }
+
     if (this.selectedQuote) {
       const editQuoteRequest = {
         id: this.selectedQuote.id,
         quotation: this.quotesForm.value.quotation,
         attributed: this.quotesForm.value.attributed,
-        dateOfQuote: this.quotesForm.value.dateOfQuote
+        dateOfQuote: dateOfQuote
       };
 
       console.log("Submitting update for quote:", editQuoteRequest);

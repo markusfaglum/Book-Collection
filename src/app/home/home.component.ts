@@ -77,12 +77,22 @@ export class HomeComponent {
       this.booksForm.reset();
       return;
     }
+
+    let publishingDate = this.booksForm.value.publishingDate;
+    if (publishingDate) {
+      const date = new Date(publishingDate);
+      date.setHours(0, 0, 0, 0); 
+      publishingDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())).toISOString();
+    }
+    
     const addBookRequest = {
       title: this.booksForm.value.title,
       description: this.booksForm.value.description,
       author: this.booksForm.value.author,
-      publishingDate: this.booksForm.value.publishingDate
+      publishingDate: publishingDate
     }
+    console.log(publishingDate);
+
     this.http.post("https://book-api-reset20240814170746.azurewebsites.net/api/Book", addBookRequest)
       .subscribe({
         next: (value) => {
@@ -135,13 +145,20 @@ export class HomeComponent {
       return;
     }
 
+    let publishingDate = this.booksForm.value.publishingDate;
+    if (publishingDate) {
+      const date = new Date(publishingDate);
+      date.setHours(0, 0, 0, 0);
+      publishingDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())).toISOString();
+    }
+
     if (this.selectedBook) {
       const editBookRequest = {
         id: this.selectedBook.id,
         title: this.booksForm.value.title,
         description: this.booksForm.value.description,
         author: this.booksForm.value.author,
-        publishingDate: this.booksForm.value.publishingDate
+        publishingDate: publishingDate
       };
 
       console.log("Submitting update for book:", editBookRequest);
