@@ -40,7 +40,9 @@ namespace Book_Api_Reset.Controllers
     [HttpPost]
     public async Task<ActionResult<List<Book>>> CreateBook(Book book)
     {
-        context.Books.Add(book);
+            System.Diagnostics.Trace.TraceInformation($"Received date: {book.PublishingDate}");
+            
+            context.Books.Add(book);
         await context.SaveChangesAsync();
         return Ok(await context.Books.ToListAsync());
     }
