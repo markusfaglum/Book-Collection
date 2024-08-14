@@ -8,7 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'https://localhost:7204/api/Auth';
+  private apiUrl = 'https://book-api-reset20240814170746.azurewebsites.net/api/Auth';
 
   constructor(private http: HttpClient, private cookieService: CookieService) { }
 

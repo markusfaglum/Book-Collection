@@ -82,7 +82,7 @@ export class QuotesComponent {
       attributed: this.quotesForm.value.attributed,
       dateOfQuote: this.quotesForm.value.dateOfQuote ? this.quotesForm.value.dateOfQuote.toISOString() : null
     };
-    this.http.post("https://localhost:7204/api/Quote", addQuoteRequest)
+    this.http.post("https://book-api-reset20240814170746.azurewebsites.net/api/Quote", addQuoteRequest)
       .subscribe({
         next: (value) => {
           console.log(value);
@@ -102,7 +102,7 @@ export class QuotesComponent {
   onDelete() {
     if (this.selectedQuoteForDeletion) {
       const id = this.selectedQuoteForDeletion.id;
-      this.http.delete(`https://localhost:7204/api/Quote/${id}`)
+      this.http.delete(`https://book-api-reset20240814170746.azurewebsites.net/api/Quote/${id}`)
         .subscribe({
           next: (value) => {
             alert("Item deleted");
@@ -118,7 +118,7 @@ export class QuotesComponent {
 
   // Get all quotes
   private getQuotes(): Observable<Quote[]> {
-    return this.http.get<Quote[]>("https://localhost:7204/api/Quote").pipe(
+    return this.http.get<Quote[]>("https://book-api-reset20240814170746.azurewebsites.net/api/Quote").pipe(
       tap(quotes => console.log("Quotes received:", quotes))
     );
   }

@@ -83,7 +83,7 @@ export class HomeComponent {
       author: this.booksForm.value.author,
       publishingDate: this.booksForm.value.publishingDate
     }
-    this.http.post("https://localhost:7204/api/Book", addBookRequest)
+    this.http.post("https://book-api-reset20240814170746.azurewebsites.net/api/Book", addBookRequest)
       .subscribe({
         next: (value) => {
           console.log(value);
@@ -103,7 +103,7 @@ export class HomeComponent {
   onDelete() {
     if (this.selectedBookForDeletion) {
       const id = this.selectedBookForDeletion.id;
-      this.http.delete(`https://localhost:7204/api/Book/${id}`)
+      this.http.delete(`https://book-api-reset20240814170746.azurewebsites.net/api/Book/${id}`)
         .subscribe({
           next: (value) => {
             alert("Item deleted");
@@ -119,7 +119,7 @@ export class HomeComponent {
 
   // Get all books
   private getBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>("https://localhost:7204/api/Book").pipe(
+    return this.http.get<Book[]>("https://book-api-reset20240814170746.azurewebsites.net/api/Book").pipe(
       tap(books => console.log("Books received:", books))
     );
   }
@@ -146,7 +146,7 @@ export class HomeComponent {
 
       console.log("Submitting update for book:", editBookRequest);
 
-      this.http.put(`https://localhost:7204/api/Book`, editBookRequest)
+      this.http.put(`https://book-api-reset20240814170746.azurewebsites.net/api/Book`, editBookRequest)
         .subscribe({
           next: (value) => {
             console.log("Update successful:", value);
