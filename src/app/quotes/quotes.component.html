@@ -151,171 +151,41 @@
                 <p class="mb-0">Unknown</p>
               </div>
               <div class="mt-auto d-flex justify-content-between">
-                <button type="button" class="btn btn-edit-del" data-bs-toggle="modal" data-bs-target="#edit-modal"><i class="fa-solid fa-pen"></i></button>
-                <button type="button" class="btn btn-edit-del" data-bs-toggle="modal" data-bs-target="#delete-modal">
+                <button type="button" class="btn btn-edit-del"><i class="fa-solid fa-pen"></i></button>
+                <button type="button" class="btn btn-edit-del">
                   <i class="fa-solid fa-trash"></i>
                 </button>
               </div>
             </div>
           </div>
-
-          <!-- Edit and delete modal -->
-
-          <div class="modal fade" tabindex="-1" id="edit-modal">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title add-form">Edit Quote</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form (ngSubmit)="onEditFormSubmit()" [formGroup]="quotesForm">
-
-                    <div class="mb-3 add-form">
-                      <label for="quotation" class="form-label">Quotation</label>
-                      <input type="text" id="quotation" formControlName="quotation" class="form-control" />
-                    </div>
-
-                    <div class="mb-3 add-form">
-                      <label for="attributed" class="form-label">Attributed</label>
-                      <input type="text" id="attributed" formControlName="attributed" class="form-control" />
-                    </div>
-
-                    <div class="mb-3 add-form">
-                      <label for="dateOfQuote" class="form-label me-2">Date Of Quote</label>
-                      <mat-form-field appearance="fill">
-                        <mat-label>Date of Quote</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="dateOfQuote">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>
-                    </div>
-
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" (click)="onEditFormSubmit()" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="modal fade" tabindex="-1" id="delete-modal">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="delete-text modal-title">This is too good to be deleted</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <p class="delete-text" *ngIf="selectedQuoteForDeletion"></p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="modal-footer-btn btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" (click)="onDelete()" class="modal-footer-btn btn btn-primary" data-bs-dismiss="modal">Okay</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
-
-
-
-
+         
         <!-- My Selected quotes -->
 
-        <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch">
-          <div class="card bg-dark text-light flex-fill">
-            <div class="card-body text-center d-flex flex-column">
-              <p class="card-title mb-3">
-                &quot;Whats the use of whining, moaning, or of wasting time in droning
-                Never have such things pulled a fellow thru,
-                Always bear in mind results depend on you.&quot;
-              </p>
-              <p class="card-text flex-grow-1">
-                - Unknown
-              </p>
-              <div class="d-flex justify-content-center">
-                <p class="mb-0">Unknown</p>
-              </div>
-              <div class="mt-auto d-flex justify-content-between">
-                <button type="button" class="btn btn-edit-del" data-bs-toggle="modal" data-bs-target="#edit-modal"><i class="fa-solid fa-pen"></i></button>
-                <button type="button" class="btn btn-edit-del" data-bs-toggle="modal" data-bs-target="#delete-modal">
-                  <i class="fa-solid fa-trash"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Edit and delete modal -->
-
-          <div class="modal fade" tabindex="-1" id="edit-modal">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title add-form">Edit Quote</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch">
+            <div class="card bg-dark text-light flex-fill">
+              <div class="card-body text-center d-flex flex-column">
+                <p class="card-title mb-3">
+                  &quot;Whats the use of whining, moaning, or of wasting time in droning
+                  Never have such things pulled a fellow thru,
+                  Always bear in mind results depend on you.&quot;
+                </p>
+                <p class="card-text flex-grow-1">
+                  - Unknown
+                </p>
+                <div class="d-flex justify-content-center">
+                  <p class="mb-0">Unknown</p>
                 </div>
-                <div class="modal-body">
-                  <form (ngSubmit)="onEditFormSubmit()" [formGroup]="quotesForm">
-
-                    <div class="mb-3 add-form">
-                      <label for="quotation" class="form-label">Quotation</label>
-                      <input type="text" id="quotation" formControlName="quotation" class="form-control" />
-                    </div>
-
-                    <div class="mb-3 add-form">
-                      <label for="attributed" class="form-label">Attributed</label>
-                      <input type="text" id="attributed" formControlName="attributed" class="form-control" />
-                    </div>
-
-                    <div class="mb-3 add-form">
-                      <label for="dateOfQuote" class="form-label me-2">Date Of Quote</label>
-                      <mat-form-field appearance="fill">
-                        <mat-label>Date of Quote</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="dateOfQuote">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>
-                    </div>
-
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" (click)="onEditFormSubmit()" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+                <div class="mt-auto d-flex justify-content-between">
+                  <button type="button" class="btn btn-edit-del"><i class="fa-solid fa-pen"></i></button>
+                  <button type="button" class="btn btn-edit-del">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="modal fade" tabindex="-1" id="delete-modal">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="delete-text modal-title">This is too good to be deleted:</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <p class="delete-text" *ngIf="selectedQuoteForDeletion"></p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="modal-footer-btn btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" (click)="onDelete()" class="modal-footer-btn btn btn-primary" data-bs-dismiss="modal">Okay</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-
-
-
-
-
+        
 
         <!-- My Selected quotes -->
 
@@ -330,77 +200,17 @@
                 <p class="mb-0">2022-8-9</p>
               </div>
               <div class="mt-auto d-flex justify-content-between">
-                <button type="button" class="btn btn-edit-del" data-bs-toggle="modal" data-bs-target="#edit-modal"><i class="fa-solid fa-pen"></i></button>
-                <button type="button" class="btn btn-edit-del" data-bs-toggle="modal" data-bs-target="#delete-modal">
+                <button type="button" class="btn btn-edit-del"><i class="fa-solid fa-pen"></i></button>
+                <button type="button" class="btn btn-edit-del">
                   <i class="fa-solid fa-trash"></i>
                 </button>
               </div>
             </div>
           </div>
 
-          <!-- Edit and delete modal -->
-
-          <div class="modal fade" tabindex="-1" id="edit-modal">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title add-form">Edit Quote</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form (ngSubmit)="onEditFormSubmit()" [formGroup]="quotesForm">
-
-                    <div class="mb-3 add-form">
-                      <label for="quotation" class="form-label">Quotation</label>
-                      <input type="text" id="quotation" formControlName="quotation" class="form-control" />
-                    </div>
-
-                    <div class="mb-3 add-form">
-                      <label for="attributed" class="form-label">Attributed</label>
-                      <input type="text" id="attributed" formControlName="attributed" class="form-control" />
-                    </div>
-
-                    <div class="mb-3 add-form">
-                      <label for="dateOfQuote" class="form-label me-2">Date Of Quote</label>
-                      <mat-form-field appearance="fill">
-                        <mat-label>Date of Quote</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="dateOfQuote">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>
-                    </div>
-
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" (click)="onEditFormSubmit()" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
-                </div>
-              </div>
-            </div>
           </div>
 
-          <div class="modal fade" tabindex="-1" id="delete-modal">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="delete-text modal-title">This is too good to be deleted:</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <p class="delete-text" *ngIf="selectedQuoteForDeletion"></p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="modal-footer-btn btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" (click)="onDelete()" class="modal-footer-btn btn btn-primary" data-bs-dismiss="modal">Okay</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-
+      
 
         <!-- My Selected quotes -->
 
@@ -419,73 +229,15 @@
                 <p class="mb-0">1937</p>
               </div>
               <div class="mt-auto d-flex justify-content-between">
-                <button type="button" class="btn btn-edit-del" data-bs-toggle="modal" data-bs-target="#edit-modal"><i class="fa-solid fa-pen"></i></button>
-                <button type="button" class="btn btn-edit-del" data-bs-toggle="modal" data-bs-target="#delete-modal">
+                <button type="button" class="btn btn-edit-del"><i class="fa-solid fa-pen"></i></button>
+                <button type="button" class="btn btn-edit-del">
                   <i class="fa-solid fa-trash"></i>
                 </button>
               </div>
             </div>
           </div>
 
-          <!-- Edit and delete modal -->
-
-          <div class="modal fade" tabindex="-1" id="edit-modal">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title add-form">Edit Quote</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form (ngSubmit)="onEditFormSubmit()" [formGroup]="quotesForm">
-
-                    <div class="mb-3 add-form">
-                      <label for="quotation" class="form-label">Quotation</label>
-                      <input type="text" id="quotation" formControlName="quotation" class="form-control" />
-                    </div>
-
-                    <div class="mb-3 add-form">
-                      <label for="attributed" class="form-label">Attributed</label>
-                      <input type="text" id="attributed" formControlName="attributed" class="form-control" />
-                    </div>
-
-                    <div class="mb-3 add-form">
-                      <label for="dateOfQuote" class="form-label me-2">Date Of Quote</label>
-                      <mat-form-field appearance="fill">
-                        <mat-label>Date of Quote</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="dateOfQuote">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>
-                    </div>
-
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" (click)="onEditFormSubmit()" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="modal fade" tabindex="-1" id="delete-modal">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="delete-text modal-title">This is too good to be deleted:</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <p class="delete-text" *ngIf="selectedQuoteForDeletion"></p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="modal-footer-btn btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" (click)="onDelete()" class="modal-footer-btn btn btn-primary" data-bs-dismiss="modal">Okay</button>
-                </div>
-              </div>
-            </div>
-          </div>
+         
 
         </div>
 
@@ -508,73 +260,15 @@
                 <p class="mb-0">1984-1-1</p>
               </div>
               <div class="mt-auto d-flex justify-content-between">
-                <button type="button" class="btn btn-edit-del" data-bs-toggle="modal" data-bs-target="#edit-modal"><i class="fa-solid fa-pen"></i></button>
-                <button type="button" class="btn btn-edit-del" data-bs-toggle="modal" data-bs-target="#delete-modal">
+                <button type="button" class="btn btn-edit-del"><i class="fa-solid fa-pen"></i></button>
+                <button type="button" class="btn btn-edit-del">
                   <i class="fa-solid fa-trash"></i>
                 </button>
               </div>
             </div>
           </div>
 
-          <!-- Edit and delete modal -->
-
-          <div class="modal fade" tabindex="-1" id="edit-modal">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title add-form">Edit Quote</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form (ngSubmit)="onEditFormSubmit()" [formGroup]="quotesForm">
-
-                    <div class="mb-3 add-form">
-                      <label for="quotation" class="form-label">Quotation</label>
-                      <input type="text" id="quotation" formControlName="quotation" class="form-control" />
-                    </div>
-
-                    <div class="mb-3 add-form">
-                      <label for="attributed" class="form-label">Attributed</label>
-                      <input type="text" id="attributed" formControlName="attributed" class="form-control" />
-                    </div>
-
-                    <div class="mb-3 add-form">
-                      <label for="dateOfQuote" class="form-label me-2">Date Of Quote</label>
-                      <mat-form-field appearance="fill">
-                        <mat-label>Date of Quote</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="dateOfQuote">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>
-                    </div>
-
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" (click)="onEditFormSubmit()" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="modal fade" tabindex="-1" id="delete-modal">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="delete-text modal-title">This is too good to be deleted:</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <p class="delete-text" *ngIf="selectedQuoteForDeletion"></p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="modal-footer-btn btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" (click)="onDelete()" class="modal-footer-btn btn btn-primary" data-bs-dismiss="modal">Okay</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          
 
         </div>
 
