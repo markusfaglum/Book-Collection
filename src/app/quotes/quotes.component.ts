@@ -144,7 +144,7 @@ export class QuotesComponent {
 
       console.log("Submitting update for quote:", editQuoteRequest);
 
-      this.http.put(`https://localhost:7204/api/Quote`, editQuoteRequest)
+      this.http.put(`https://book-api-reset20240814170746.azurewebsites.net/api/Quote`, editQuoteRequest)
         .subscribe({
           next: (value) => {
             console.log("Update successful:", value);
